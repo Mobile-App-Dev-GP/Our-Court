@@ -192,11 +192,25 @@ Our Court helps tennis enthusiasts locate tennis courts near them. It allows use
 
 - Users can view the daily sign-up sheet and see how many players plan to attend.
 
+#### Implementation Tasks
+- [ ] Create a daily sign-up interface for each court.
+- [ ] Add a date selection feature.
+- [ ] Connect player sign-ups to the attendance list.
+- [ ] Update the attendance count when players join or leave.
+- [ ] Connect attendance data to persistent storage.
+
 ### Saved Courts Feature (#21)
 
 - As a user, I want to save tennis courts to a personal list so that I can easily find and revisit my preferred locations.
 
 - Users can add or remove courts from their Saved Courts list.
+
+#### Implementation Tasks
+- [ ] Add a Save/Bookmark icon to each court's details screen.
+- [ ] Implement functionality to add or remove saved courts.
+- [ ] Create a Saved Courts section within the user profile.
+- [ ] Display saved courts using RecyclerView.
+- [ ] Connect Saved Courts to persistent data storage.
 
 ### Hit List and Court History (#22)
 
@@ -204,17 +218,42 @@ Our Court helps tennis enthusiasts locate tennis courts near them. It allows use
 
 - The Hit List displays unique courts visited, while Court History records individual visits, including repeat visits.
 
+#### Implementation Tasks
+- [ ] Create a function to record court visits with dates.
+- [ ] Build a Hit List displaying each unique court visited.
+- [ ] Build a Court History list showing all visits, including repeat visits.
+- [ ] Implement alphabetical and first-visit-date sorting for the Hit List.
+- [ ] Display Court History in chronological order.
+- [ ] Add a public/private visibility toggle for the Hit List.
+- [ ] Connect court visit records to persistent storage.
+
 ### Court Rating and Review System (#23)
 
 - As a user, I want to rate and review tennis courts so that I can share my experiences and help other players choose suitable courts.
 
 - Users can submit star ratings and written reviews.
 
+- #### Implementation Tasks
+- [ ] Create an interactive five-star rating interface.
+- [ ] Add a text input field for written reviews.
+- [ ] Implement functionality to submit ratings and reviews.
+- [ ] Display submitted reviews on the Court Details screen.
+- [ ] Calculate and display the average rating for each court.
+- [ ] Connect ratings and reviews to persistent data storage.
+
 ### Community Posts and Discussions (#24)
 
 - As a tennis player, I want to create community posts so that I can connect with other players, share announcements, and find hitting partners.
 
 - Users can view community posts and create their own.
+
+- #### Implementation Tasks
+- [ ] Create a Community page with a RecyclerView for posts.
+- [ ] Add a Create Post button and post submission form.
+- [ ] Implement functionality to publish community posts.
+- [ ] Display the post author's name, content, and date.
+- [ ] Create a post details screen for viewing discussions.
+- [ ] Connect community posts to persistent data storage.
 
 ### Persistent Application Data (#25)
 
@@ -227,5 +266,14 @@ Our Court helps tennis enthusiasts locate tennis courts near them. It allows use
 - As a user, I want the application to function correctly so that I can navigate between screens and use its features without errors.
 
 - The development team tests major user flows, resolves bugs, and records the final demonstration.
+
+- #### Implementation Tasks
+- [ ] Set up persistent data storage for the application.
+- [ ] Create data models for users, courts, reviews, and visits.
+- [ ] Implement functions to save and retrieve user profile information.
+- [ ] Store saved courts, attendance sign-ups, and court history.
+- [ ] Store community posts and court reviews.
+- [ ] Load saved data when the application restarts.
+- [ ] Ensure application screens display updated stored information.
 
 
