@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="#F5F5F5"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#DCDCDC"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Author Avatar Initial -->
+        <View
+            android:id="@+id/view_avatar_bg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_avatar_initials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MC"
+            android:textColor="#272727"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/view_avatar_bg"
+            app:layout_constraintEnd_toEndOf="@id/view_avatar_bg"
+            app:layout_constraintStart_toStartOf="@id/view_avatar_bg"
+            app:layout_constraintTop_toTopOf="@id/view_avatar_bg" />
+
+        <TextView
+            android:id="@+id/tv_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Maya Chen"
+            android:textColor="#272727"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/view_avatar_bg"
+            app:layout_constraintTop_toTopOf="@id/view_avatar_bg" />
+
+        <TextView
+            android:id="@+id/tv_timestamp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:text="20 min ago"
+            android:textColor="#686868"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_skill_badge"
+            app:layout_constraintStart_toEndOf="@id/view_avatar_bg"
+            app:layout_constraintTop_toBottomOf="@id/tv_author_name" />
+
+        <!-- Skill Badge (UTR / NTRP) aligned right -->
+        <TextView
+            android:id="@+id/tv_skill_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_surface_tag"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="UTR 6.5"
+            android:textColor="#272727"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view_avatar_bg" />
+
+        <!-- Partner Request Badge -->
+        <TextView
+            android:id="@+id/tv_partner_request_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_surface_tag"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:text="Partner Request"
+            android:textColor="#272727"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_avatar_bg" />
+
+        <!-- Post Content Text / Comment -->
+        <TextView
+            android:id="@+id/tv_post_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Looking for a hitting partner..."
+            android:textColor="#272727"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_partner_request_badge" />
+
+        <!-- Structured Details Container -->
+        <LinearLayout
+            android:id="@+id/layout_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_post_content">
+
+            <!-- Court row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Court"
+                    android:src="@drawable/ic_location_pin"
+                    app:tint="#686868" />
+                <TextView
+                    android:id="@+id/tv_req_court"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dolores Park Courts"
+                    android:textColor="#272727"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Date/Time row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Time"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    app:tint="#686868" />
+                <TextView
+                    android:id="@+id/tv_req_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today, 5:00 PM"
+                    android:textColor="#272727"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Play Type row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Play type"
+                    android:src="@android:drawable/ic_menu_compass"
+                    app:tint="#686868" />
+                <TextView
+                    android:id="@+id/tv_req_playtype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Casual Rally / Match"
+                    android:textColor="#272727"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Footer Action Buttons -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_message_partner"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Message Partner"
+            android:textAllCaps="false"
+            android:textColor="#272727"
+            android:textSize="12sp"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_accept_match"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_details"
+            app:strokeColor="#DCDCDC" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_accept_match"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#272727"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Accept Match"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_message_partner"
+            app:layout_constraintTop_toBottomOf="@id/layout_details" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

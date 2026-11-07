@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_skill_row"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="12dp">
+
+    <TextView
+        android:id="@+id/tv_skill_prefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NTRP"
+        android:textColor="#686868"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_skill_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:singleLine="true"
+        android:text="3.5"
+        android:textColor="#272727"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/iv_check"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:contentDescription="Selected"
+        android:src="@drawable/ic_check"
+        android:visibility="gone" />
+</LinearLayout>

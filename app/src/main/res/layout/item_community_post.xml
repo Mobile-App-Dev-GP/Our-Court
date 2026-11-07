@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#DCDCDC"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Author Avatar Initial (Circular background view) -->
+        <View
+            android:id="@+id/view_avatar_bg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_avatar_initials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MC"
+            android:textColor="#272727"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/view_avatar_bg"
+            app:layout_constraintEnd_toEndOf="@id/view_avatar_bg"
+            app:layout_constraintStart_toStartOf="@id/view_avatar_bg"
+            app:layout_constraintTop_toTopOf="@id/view_avatar_bg" />
+
+        <TextView
+            android:id="@+id/tv_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Maya Chen"
+            android:textColor="#272727"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/view_avatar_bg"
+            app:layout_constraintTop_toTopOf="@id/view_avatar_bg" />
+
+        <!-- Skill Badge (UTR / NTRP) -->
+        <TextView
+            android:id="@+id/tv_skill_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_surface_tag"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="UTR 6.5"
+            android:textColor="#272727"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tv_author_name"
+            app:layout_constraintStart_toEndOf="@id/tv_author_name"
+            app:layout_constraintTop_toTopOf="@id/tv_author_name" />
+
+        <TextView
+            android:id="@+id/tv_timestamp_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:text="20 min ago · Hitting partner"
+            android:textColor="#686868"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/btn_options"
+            app:layout_constraintStart_toEndOf="@id/view_avatar_bg"
+            app:layout_constraintTop_toBottomOf="@id/tv_author_name" />
+
+        <ImageButton
+            android:id="@+id/btn_options"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="More options"
+            android:src="@android:drawable/ic_menu_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#686868" />
+
+        <!-- Post Content Text -->
+        <TextView
+            android:id="@+id/tv_post_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Anyone up for a rally at Dolores around 5? Looking for a UTR 5–7 partner for an hour. I’ll bring balls!"
+            android:textColor="#272727"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_timestamp_category" />
+
+        <!-- Court Location Reference -->
+        <LinearLayout
+            android:id="@+id/layout_court_ref"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_post_content">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="4dp"
+                android:contentDescription="Court location"
+                android:src="@drawable/ic_location_pin"
+                app:tint="#686868" />
+
+            <TextView
+                android:id="@+id/tv_court_name_ref"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dolores Park Courts"
+                android:textColor="#686868"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Divider Line -->
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="#DCDCDC"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_court_ref" />
+
+        <!-- Comments Footer -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="Comments"
+                android:src="@android:drawable/ic_menu_send"
+                app:tint="#686868" />
+
+            <TextView
+                android:id="@+id/tv_comments_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 comments"
+                android:textColor="#686868"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
