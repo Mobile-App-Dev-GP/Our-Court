@@ -111,7 +111,8 @@ class SettingsFragment : Fragment() {
 
         // Account actions
         view.findViewById<LinearLayout>(R.id.row_edit_credential).setOnClickListener {
-            Toast.makeText(requireContext(), "Opening email & password management...", Toast.LENGTH_SHORT).show()
+            val intent = android.content.Intent(requireContext(), EditEmailPasswordActivity::class.java)
+            startActivity(intent)
         }
 
         view.findViewById<LinearLayout>(R.id.row_logout).setOnClickListener {
