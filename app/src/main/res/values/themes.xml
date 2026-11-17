@@ -4,6 +4,14 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">#272727</item>
+        <item name="colorPrimary">@color/tennis_ball_green</item>
+        <item name="colorSecondary">@color/tennis_ball_green</item>
+        <item name="colorPrimaryContainer">@color/tennis_ball_green</item>
+        <item name="colorSecondaryContainer">@color/tennis_ball_green</item>
+        <item name="colorOnPrimary">#000000</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorControlActivated">@color/tennis_ball_green</item>
+        <item name="colorAccent">@color/tennis_ball_green</item>
     </style>
 
     <style name="Theme.OurCourt" parent="Base.Theme.OurCourt" />
