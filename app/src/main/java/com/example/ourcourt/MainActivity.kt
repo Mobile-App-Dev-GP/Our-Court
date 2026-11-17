@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         bottomNav.setOnItemSelectedListener { item ->
+            supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
             when (item.itemId) {
                 R.id.nav_home -> {
                     loadFragment(DiscoverFragment())
@@ -41,6 +42,17 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 else -> false
+            }
+        }
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            val currentFrag = supportFragmentManager.findFragmentById(R.id.fragment_container)
+            if (currentFrag is ProfileFragment || currentFrag is SettingsFragment) {
+                bottomNav.menu.findItem(R.id.nav_profile).isChecked = true
+            } else if (currentFrag is DiscoverFragment) {
+                bottomNav.menu.findItem(R.id.nav_home).isChecked = true
+            } else if (currentFrag is PartnersFragment) {
+                bottomNav.menu.findItem(R.id.nav_community).isChecked = true
             }
         }
     }
