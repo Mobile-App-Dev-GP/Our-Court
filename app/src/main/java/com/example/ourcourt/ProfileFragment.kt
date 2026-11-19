@@ -7,15 +7,39 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.google.android.material.card.MaterialCardView
 
 class ProfileFragment : Fragment() {
+
+    private lateinit var tvHitCount: TextView
+    private lateinit var cardHitList: MaterialCardView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        tvHitCount = view.findViewById(R.id.tv_hit_count)
+        cardHitList = view.findViewById(R.id.card_hit_list)
+
+        cardHitList.setOnClickListener {
+            (activity as? MainActivity)?.openHitList()
+        }
+
+        updateHitListCount()
+
+        return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateHitListCount()
+    }
+
+    private fun updateHitListCount() {
+        val count = HitListDataStore.getUniqueCount()
+        tvHitCount.text = if (count == 1) "1 court" else "$count courts"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

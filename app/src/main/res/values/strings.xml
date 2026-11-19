@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Our Court</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_community">Community</string>
+    <string name="nav_profile">Profile</string>
+    <string name="hit_list_title">Hit List</string>
+    <string name="hit_list_subtitle">Every court you’ve played. Most recent first.</string>
+    <string name="most_recent">Most recent</string>
+    <string name="courts_visited_plural">%1$d courts visited</string>
+    <string name="court_visited_single">1 court visited</string>
+    <string name="last_visited_format">Last visited · %1$s</string>
+    <string name="empty_hit_list_title">Your court history starts here.</string>
+    <string name="empty_hit_list_subtitle">Courts you visit will appear in your Hit List.</string>
 </resources>
