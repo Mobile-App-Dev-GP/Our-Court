@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="tennis_ball_green">#9AE600</color>
+    <color name="bottom_nav_indicator_color">#EEEEEE</color>
 </resources>

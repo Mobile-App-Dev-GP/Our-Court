@@ -18,7 +18,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="#D4D4D4"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
