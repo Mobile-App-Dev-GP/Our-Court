@@ -18,7 +18,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="#FFFFFF"
+        android:background="#D4D4D4"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -28,6 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
+        android:theme="@style/ThemeOverlay.OurCourt.BottomNavTheme"
         app:backgroundTint="#FFFFFF"
         app:itemIconTint="@color/bottom_nav_color_selector"
         app:itemTextColor="@color/bottom_nav_color_selector"
