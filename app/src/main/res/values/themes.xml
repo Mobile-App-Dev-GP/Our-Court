@@ -4,6 +4,14 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">#272727</item>
+        <item name="colorPrimary">@color/tennis_ball_green</item>
+        <item name="colorSecondary">@color/tennis_ball_green</item>
+        <item name="colorPrimaryContainer">@color/tennis_ball_green</item>
+        <item name="colorSecondaryContainer">#EEEEEE</item>
+        <item name="colorOnPrimary">#000000</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorControlActivated">@color/tennis_ball_green</item>
+        <item name="colorAccent">@color/tennis_ball_green</item>
     </style>
 
     <style name="Theme.OurCourt" parent="Base.Theme.OurCourt" />
@@ -15,8 +23,18 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="ThemeOverlay.OurCourt.BottomNav" parent="">
-        <item name="colorSecondaryContainer">#DCDCDC</item>
+    <style name="ThemeOverlay.OurCourt.BottomNavTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorSurface">@color/white</item>
+        <item name="colorSurfaceContainer">@color/white</item>
+        <item name="colorSecondaryContainer">#EEEEEE</item>
         <item name="colorOnSecondaryContainer">#272727</item>
+    </style>
+
+    <style name="ThemeOverlay.OurCourt.BottomNav" parent="">
+        <item name="colorSecondaryContainer">#EEEEEE</item>
+        <item name="colorOnSecondaryContainer">#272727</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorSurfaceContainer">@color/white</item>
+        <item name="backgroundTint">@color/white</item>
     </style>
 </resources>
