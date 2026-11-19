@@ -26,5 +26,8 @@
     <style name="ThemeOverlay.OurCourt.BottomNav" parent="">
         <item name="colorSecondaryContainer">#EEEEEE</item>
         <item name="colorOnSecondaryContainer">#272727</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorSurfaceContainer">@color/white</item>
+        <item name="backgroundTint">@color/white</item>
     </style>
 </resources>
