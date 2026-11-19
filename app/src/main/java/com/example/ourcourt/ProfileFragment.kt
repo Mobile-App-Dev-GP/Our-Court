@@ -1,5 +1,6 @@
 package com.example.ourcourt
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,11 @@ class ProfileFragment : Fragment() {
                     .addToBackStack("settings")
                     .commit()
             }
+        }
+
+        view.findViewById<View>(R.id.btn_edit_profile)?.setOnClickListener {
+            val intent = Intent(requireContext(), EditProfileActivity::class.java)
+            startActivity(intent)
         }
     }
 }
