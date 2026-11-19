@@ -24,7 +24,7 @@
     </style>
 
     <style name="ThemeOverlay.OurCourt.BottomNav" parent="">
-        <item name="colorSecondaryContainer">#DCDCDC</item>
+        <item name="colorSecondaryContainer">#EEEEEE</item>
         <item name="colorOnSecondaryContainer">#272727</item>
     </style>
 </resources>
