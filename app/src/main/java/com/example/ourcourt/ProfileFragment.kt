@@ -61,15 +61,17 @@ class ProfileFragment : Fragment() {
         val cardHistory = view.findViewById<View>(R.id.card_court_history)
         val tvHistoryCount = view.findViewById<TextView>(R.id.tv_history_count)
 
-        val totalCount = CourtHistoryManager.getHistory(requireContext()).size
-        val countWord = if (totalCount == 1) "court" else "courts"
-        tvHistoryCount.text = "$totalCount $countWord"
+        if (cardHistory != null && tvHistoryCount != null) {
+            val totalCount = CourtHistoryManager.getHistory(requireContext()).size
+            val countWord = if (totalCount == 1) "court" else "courts"
+            tvHistoryCount.text = "$totalCount $countWord"
 
-        cardHistory.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, CourtHistoryFragment())
-                .addToBackStack(null)
-                .commit()
+            cardHistory.setOnClickListener {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, CourtHistoryFragment())
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
 
         view.findViewById<View>(R.id.btn_edit_profile)?.setOnClickListener {
