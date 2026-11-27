@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -15,6 +16,10 @@ import com.google.android.material.button.MaterialButton
 class CourtDetailsFragment : Fragment() {
 
     private var courtItem: CourtItem? = null
+
+    private lateinit var layoutSignupPlayersContainer: LinearLayout
+    private lateinit var tvSignupSubtitle: TextView
+    private lateinit var tvSignupEmptyState: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +59,10 @@ class CourtDetailsFragment : Fragment() {
         val btnCheckIn = view.findViewById<MaterialButton>(R.id.btn_check_in)
         val ivCourtPhoto = view.findViewById<ImageView>(R.id.iv_court_photo)
         val tvPhotoText = view.findViewById<TextView>(R.id.tv_photo_text)
+
+        layoutSignupPlayersContainer = view.findViewById(R.id.layout_signup_players_container)
+        tvSignupSubtitle = view.findViewById(R.id.tv_signup_subtitle)
+        tvSignupEmptyState = view.findViewById(R.id.tv_signup_empty_state)
 
         btnBack.setOnClickListener {
             if (parentFragmentManager.backStackEntryCount > 0) {
@@ -152,13 +161,73 @@ class CourtDetailsFragment : Fragment() {
         }
 
         btnCheckIn.setOnClickListener {
-            Toast.makeText(requireContext(), "Check-in flow coming in issue #20", Toast.LENGTH_SHORT).show()
+            val court = courtItem ?: CourtItem(
+                id = "default_dolores",
+                name = "Dolores Park Courts",
+                rating = "4.8",
+                distance = "0.5 mi",
+                details = "Dolores St & 18th St · San Francisco",
+                surface = "Hard",
+                isOpen = true,
+                address = "Dolores St & 18th St",
+                hours = "Open now · Closes 10 PM",
+                lighting = "Lit",
+                courtCount = "6 courts"
+            )
+            val fragment = CheckInFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("court_item", court)
+                }
+            }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack("CheckIn")
+                .commit()
         }
 
         btnSaveCourt.setOnClickListener {
             Toast.makeText(requireContext(), "Saved court toggled", Toast.LENGTH_SHORT).show()
         }
 
+        loadCheckIns()
+
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadCheckIns()
+    }
+
+    private fun loadCheckIns() {
+        val courtId = courtItem?.id ?: "default_dolores"
+        val checkIns = CheckInDataStore.getCheckIns(requireContext(), courtId)
+
+        tvSignupSubtitle.text = "Today · ${checkIns.size} player${if (checkIns.size == 1) "" else "s"} signed up"
+
+        layoutSignupPlayersContainer.removeAllViews()
+        if (checkIns.isEmpty()) {
+            tvSignupEmptyState.visibility = View.VISIBLE
+            layoutSignupPlayersContainer.visibility = View.GONE
+        } else {
+            tvSignupEmptyState.visibility = View.GONE
+            layoutSignupPlayersContainer.visibility = View.VISIBLE
+
+            val inflater = LayoutInflater.from(requireContext())
+            for (item in checkIns) {
+                val rowView = inflater.inflate(R.layout.item_check_in_player, layoutSignupPlayersContainer, false)
+                val tvInitials = rowView.findViewById<TextView>(R.id.tv_avatar_initials)
+                val tvName = rowView.findViewById<TextView>(R.id.tv_player_name)
+                val tvDetails = rowView.findViewById<TextView>(R.id.tv_player_details)
+                val tvTime = rowView.findViewById<TextView>(R.id.tv_player_time)
+
+                tvInitials.text = item.avatarInitials
+                tvName.text = item.userName
+                tvDetails.text = "${item.userSkill} · ${item.playReason}"
+                tvTime.text = item.timeOfDay
+
+                layoutSignupPlayersContainer.addView(rowView)
+            }
+        }
     }
 }

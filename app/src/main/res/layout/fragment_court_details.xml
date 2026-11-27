@@ -336,6 +336,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_signup_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -343,103 +344,24 @@
                     android:textColor="#686868"
                     android:textSize="13sp" />
 
-                <!-- Sample Player Sign-up Item 1 -->
+                <!-- Dynamic Players Container -->
                 <LinearLayout
+                    android:id="@+id/layout_signup_players_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="vertical" />
 
-                    <TextView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/bg_circle_avatar"
-                        android:gravity="center"
-                        android:text="MC"
-                        android:textColor="#272727"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Maya Chen"
-                            android:textColor="#272727"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="UTR 6.5 · Looking to rally"
-                            android:textColor="#686868"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5:00–6:00 PM"
-                        android:textColor="#686868"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <!-- Sample Player Sign-up Item 2 -->
-                <LinearLayout
+                <!-- Empty State -->
+                <TextView
+                    android:id="@+id/tv_signup_empty_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/bg_circle_avatar"
-                        android:gravity="center"
-                        android:text="AR"
-                        android:textColor="#272727"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alex Rivera"
-                            android:textColor="#272727"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="UTR 5.2 · Looking to rally"
-                            android:textColor="#686868"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5:30–6:30 PM"
-                        android:textColor="#686868"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="No players signed up for today yet. Be the first to check in!"
+                    android:textColor="#8E8E93"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
 
                 <!-- Check In to Play Button -->
                 <com.google.android.material.button.MaterialButton
