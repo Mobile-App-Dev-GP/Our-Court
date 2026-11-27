@@ -29,9 +29,44 @@ class DiscoverFragment : Fragment() {
         layoutEmptyState = view.findViewById(R.id.layout_empty_state)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = CourtAdapter(courtList)
+        recyclerView.adapter = CourtAdapter(courtList) { court ->
+            val fragment = CourtDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("court_item", court)
+                }
+            }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack("CourtDetails")
+                .commit()
+        }
 
         updateState()
+
+        layoutEmptyState.setOnClickListener {
+            val sampleCourt = CourtItem(
+                id = "default_dolores",
+                name = "Dolores Park Courts",
+                rating = "4.8",
+                distance = "0.5 mi",
+                details = "Dolores St & 18th St · San Francisco",
+                surface = "Hard",
+                isOpen = true,
+                address = "Dolores St & 18th St",
+                hours = "Open now · Closes 10 PM",
+                lighting = "Lit",
+                courtCount = "6 courts"
+            )
+            val fragment = CourtDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("court_item", sampleCourt)
+                }
+            }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack("CourtDetails")
+                .commit()
+        }
 
         val btnFilter = view.findViewById<View>(R.id.btn_filter)
         btnFilter.setOnClickListener {
@@ -62,12 +97,27 @@ data class CourtItem(
     val distance: String,
     val details: String,
     val surface: String,
-    val isOpen: Boolean
-)
+    val isOpen: Boolean,
+    val address: String? = null,
+    val hours: String? = null,
+    val lighting: String? = null,
+    val courtCount: String? = null,
+    val photoUrl: String? = null,
+    val officialWebsite: String? = null
+) : java.io.Serializable
 
-class CourtAdapter(private val courts: List<CourtItem>) : RecyclerView.Adapter<CourtAdapter.CourtViewHolder>() {
+class CourtAdapter(
+    private val courts: List<CourtItem>,
+    private val onCourtClick: (CourtItem) -> Unit
+) : RecyclerView.Adapter<CourtAdapter.CourtViewHolder>() {
 
-    class CourtViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class CourtViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvCourtName: TextView = itemView.findViewById(R.id.tv_court_name)
+        val tvRating: TextView = itemView.findViewById(R.id.tv_rating)
+        val tvCourtDetails: TextView = itemView.findViewById(R.id.tv_court_details)
+        val tvSurfaceTag: TextView = itemView.findViewById(R.id.tv_surface_tag)
+        val tvOpenStatus: TextView = itemView.findViewById(R.id.tv_open_status)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourtViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_court_card, parent, false)
@@ -75,7 +125,16 @@ class CourtAdapter(private val courts: List<CourtItem>) : RecyclerView.Adapter<C
     }
 
     override fun onBindViewHolder(holder: CourtViewHolder, position: Int) {
-        // Bind dynamic court data when available
+        val court = courts[position]
+        holder.tvCourtName.text = court.name
+        holder.tvRating.text = court.rating
+        holder.tvCourtDetails.text = "${court.distance} · ${court.address ?: court.details}"
+        holder.tvSurfaceTag.text = court.surface
+        holder.tvOpenStatus.text = if (court.isOpen) "Open now" else "Closed"
+
+        holder.itemView.setOnClickListener {
+            onCourtClick(court)
+        }
     }
 
     override fun getItemCount(): Int = courts.size
