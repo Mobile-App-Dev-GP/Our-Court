@@ -1,5 +1,6 @@
 package com.example.ourcourt
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -40,6 +41,14 @@ class ProfileFragment : Fragment() {
             (activity as? MainActivity)?.openHitList()
         }
 
+        val cardSavedCourts = view.findViewById<View>(R.id.card_saved_courts)
+        cardSavedCourts?.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, SavedCourtsFragment())
+                .addToBackStack("SavedCourts")
+                .commit()
+        }
+
         // Prevent visibility toggle clicks from opening Hit List
         layoutHitVisibility.setOnClickListener { }
         layoutHitVisibility.isClickable = true
@@ -56,6 +65,7 @@ class ProfileFragment : Fragment() {
         }
 
         updateHitListCount()
+        updateSavedCourtsCount()
         updateVisibilityUI(HitListDataStore.isPublicDefault)
 
         return view
@@ -64,6 +74,7 @@ class ProfileFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         updateHitListCount()
+        updateSavedCourtsCount()
         updateVisibilityUI(HitListDataStore.isPublicDefault)
     }
 
@@ -79,6 +90,22 @@ class ProfileFragment : Fragment() {
         } else {
             dividerHitPreview.visibility = View.GONE
             layoutHitPreview.visibility = View.GONE
+        }
+    }
+
+    private fun updateSavedCourtsCount() {
+        val context = context ?: return
+        val savedCourts = SavedCourtsManager.getSavedCourts(context)
+        val count = savedCourts.size
+
+        val tvSavedCount = view?.findViewById<TextView>(R.id.tv_saved_count)
+        val tvSavedEmpty = view?.findViewById<TextView>(R.id.tv_saved_empty)
+
+        tvSavedCount?.text = if (count == 1) "1 court" else "$count courts"
+        if (count > 0) {
+            tvSavedEmpty?.text = "$count ${if (count == 1) "bookmarked court" else "bookmarked courts"} saved"
+        } else {
+            tvSavedEmpty?.text = "No saved courts yet."
         }
     }
 

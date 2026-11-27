@@ -22,6 +22,9 @@
         android:id="@+id/layout_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@id/tv_app_title"
@@ -36,6 +39,7 @@
             android:src="@drawable/ic_location_pin" />
 
         <TextView
+            android:id="@+id/tv_location_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="San Francisco"
@@ -57,18 +61,23 @@
         app:boxCornerRadiusBottomStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusTopStart="12dp"
-        app:boxStrokeColor="#D4D4D4"
+        app:boxStrokeColor="#272727"
         app:boxStrokeWidth="1dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="#272727"
+        app:hintTextColor="#686868"
         app:layout_constraintEnd_toStartOf="@id/btn_filter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_app_title"
-        app:startIconDrawable="@android:drawable/ic_menu_search">
+        app:startIconDrawable="@android:drawable/ic_menu_search"
+        app:startIconTint="#272727">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:inputType="textPostalAddress"
             android:maxLines="1"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>

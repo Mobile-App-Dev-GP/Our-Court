@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             val currentFrag = supportFragmentManager.findFragmentById(R.id.fragment_container)
             if (currentFrag is ProfileFragment || currentFrag is SettingsFragment) {
                 bottomNav.menu.findItem(R.id.nav_profile).isChecked = true
-            } else if (currentFrag is DiscoverFragment) {
+            } else if (currentFrag is DiscoverFragment || currentFrag is CourtDetailsFragment) {
                 bottomNav.menu.findItem(R.id.nav_home).isChecked = true
             } else if (currentFrag is PartnersFragment) {
                 bottomNav.menu.findItem(R.id.nav_community).isChecked = true

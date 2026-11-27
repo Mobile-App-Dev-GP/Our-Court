@@ -92,6 +92,8 @@ class CreatePostActivity : AppCompatActivity() {
             showSkillPopup(tvMaxSkill, false)
         }
 
+        val selectedCourtName = intent.getStringExtra("EXTRA_COURT_NAME") ?: "Dolores Park Courts"
+
         btnPost.setOnClickListener {
             val content = findViewById<EditText>(R.id.et_post_content).text.toString().trim()
             val isPartner = switchPartner.isChecked
@@ -107,7 +109,7 @@ class CreatePostActivity : AppCompatActivity() {
                         timestamp = "Just now",
                         skillBadge = "UTR 5.2",
                         content = content,
-                        court = "Dolores Park Courts",
+                        court = selectedCourtName,
                         time = timeDisplay,
                         playType = "Casual Rally / Match"
                     )
@@ -119,7 +121,7 @@ class CreatePostActivity : AppCompatActivity() {
                         skillBadge = "UTR 5.2",
                         timestampCategory = "Just now · General",
                         content = content,
-                        courtName = "Dolores Park Courts",
+                        courtName = selectedCourtName,
                         commentsCount = "0 comments"
                     )
                     CommunityDataStore.allPosts.add(0, post)
