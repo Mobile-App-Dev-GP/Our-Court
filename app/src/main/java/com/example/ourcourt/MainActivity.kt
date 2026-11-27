@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var bottomNav: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav = findViewById(R.id.bottom_navigation)
 
         if (savedInstanceState == null) {
             loadFragment(DiscoverFragment())
@@ -55,6 +58,19 @@ class MainActivity : AppCompatActivity() {
                 bottomNav.menu.findItem(R.id.nav_community).isChecked = true
             }
         }
+    }
+
+    fun selectTab(itemId: Int) {
+        if (::bottomNav.isInitialized) {
+            bottomNav.selectedItemId = itemId
+        }
+    }
+
+    fun openHitList() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, HitListFragment())
+            .addToBackStack("HitList")
+            .commit()
     }
 
     private fun loadFragment(fragment: Fragment) {

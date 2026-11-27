@@ -149,20 +149,92 @@
             app:strokeColor="#D4D4D4"
             app:strokeWidth="1dp" />
 
-        <!-- Collection Cards Group -->
+        <!-- Hit List Row (358dp wide, min 64dp tall, below profile info & edit button) -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_hit_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#F7F7F7"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_edit_profile"
+            app:strokeColor="#E2E2E2"
+            app:strokeWidth="1dp">
 
-        <!-- 1. Saved Courts Card -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="64dp"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_hit_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="Hit List"
+                    android:src="@drawable/ic_list_checks"
+                    app:tint="#595959"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_hit_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Hit List"
+                    android:textColor="#242424"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_hit_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_hit_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#686868"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_hit_chevron"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_hit_chevron"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="Open Hit List"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="#757575"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Saved Courts Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_saved_courts"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="14dp"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_edit_profile"
+            app:layout_constraintTop_toBottomOf="@id/card_hit_list"
             app:strokeColor="#D4D4D4"
             app:strokeWidth="1dp">
 
@@ -240,170 +312,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- 2. Hit List Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_hit_list"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_saved_courts"
-            app:strokeColor="#D4D4D4"
-            app:strokeWidth="1dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/iv_hit_icon"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:contentDescription="Hit list"
-                    android:src="@drawable/ic_list_checks"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_hit_title"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_hit_title" />
-
-                <TextView
-                    android:id="@+id/tv_hit_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:text="Hit List"
-                    android:textColor="#272727"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/iv_hit_icon"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_hit_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="0 courts"
-                    android:textColor="#686868"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_hit_title"
-                    app:layout_constraintEnd_toStartOf="@id/iv_hit_chevron"
-                    app:layout_constraintTop_toTopOf="@id/tv_hit_title" />
-
-                <ImageView
-                    android:id="@+id/iv_hit_chevron"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:contentDescription="Open hit list"
-                    android:src="@drawable/ic_chevron_right"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_hit_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_hit_title" />
-
-                <TextView
-                    android:id="@+id/tv_hit_desc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Your collection of unique courts played."
-                    android:textColor="#686868"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_hit_title" />
-
-                <!-- Visibility Row -->
-                <TextView
-                    android:id="@+id/tv_visibility_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="List visibility"
-                    android:textColor="#272727"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="@id/layout_visibility_toggle"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/layout_visibility_toggle" />
-
-                <!-- Compact Public | Private Toggle -->
-                <LinearLayout
-                    android:id="@+id/layout_visibility_toggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_surface_tag"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_hit_desc">
-
-                    <LinearLayout
-                        android:id="@+id/layout_public"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_circle_avatar"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="8dp">
-
-                        <ImageView
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
-                            android:layout_marginEnd="4dp"
-                            android:contentDescription="Globe"
-                            android:src="@drawable/ic_globe" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Public"
-                            android:textColor="#272727"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tv_private"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:paddingHorizontal="10dp"
-                        android:text="Private"
-                        android:textColor="#686868"
-                        android:textSize="11sp" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider_hit"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="12dp"
-                    android:background="#D4D4D4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_visibility_toggle" />
-
-                <TextView
-                    android:id="@+id/tv_hit_empty"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="No courts played yet."
-                    android:textColor="#686868"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/divider_hit" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- 3. Court History Card -->
+        <!-- Court History Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_court_history"
             android:layout_width="0dp"
@@ -414,7 +323,7 @@
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_hit_list"
+            app:layout_constraintTop_toBottomOf="@id/card_saved_courts"
             app:strokeColor="#D4D4D4"
             app:strokeWidth="1dp">
 
