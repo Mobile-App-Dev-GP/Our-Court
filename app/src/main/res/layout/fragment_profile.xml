@@ -149,51 +149,46 @@
             app:strokeColor="#D4D4D4"
             app:strokeWidth="1dp" />
 
-        <!-- Hit List Row (358dp wide, min 64dp tall, below profile info & edit button) -->
+        <!-- Hit List Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_hit_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="#F7F7F7"
-            app:cardCornerRadius="12dp"
+            android:layout_marginTop="14dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_edit_profile"
-            app:strokeColor="#E2E2E2"
+            app:strokeColor="#D4D4D4"
             app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="64dp"
                 android:padding="16dp">
 
+                <!-- Header Row -->
                 <ImageView
                     android:id="@+id/iv_hit_icon"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:contentDescription="Hit List"
                     android:src="@drawable/ic_list_checks"
-                    app:tint="#595959"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_hit_title"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@id/tv_hit_title" />
 
                 <TextView
                     android:id="@+id/tv_hit_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginStart="9dp"
                     android:text="Hit List"
-                    android:textColor="#242424"
-                    android:textSize="16sp"
+                    android:textColor="#272727"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/iv_hit_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -201,24 +196,147 @@
                     android:id="@+id/tv_hit_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:fontFamily="sans-serif"
+                    android:layout_marginEnd="8dp"
+                    android:text="0 courts"
                     android:textColor="#686868"
                     android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_hit_title"
                     app:layout_constraintEnd_toStartOf="@id/iv_hit_chevron"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@id/tv_hit_title" />
 
                 <ImageView
                     android:id="@+id/iv_hit_chevron"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
                     android:contentDescription="Open Hit List"
                     android:src="@drawable/ic_chevron_right"
-                    app:tint="#757575"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_hit_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_hit_title" />
+
+                <!-- Description -->
+                <TextView
+                    android:id="@+id/tv_hit_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Your collection of unique courts played."
+                    android:textColor="#686868"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_hit_title" />
+
+                <!-- Visibility Selector Row -->
+                <LinearLayout
+                    android:id="@+id/layout_hit_visibility"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_hit_desc">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="List visibility"
+                        android:textColor="#272727"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="140dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_segmented_track"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:id="@+id/btn_visibility_public"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_segment_selected"
+                            android:drawableStart="@drawable/ic_globe"
+                            android:drawablePadding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="6dp"
+                            android:text="Public"
+                            android:textColor="#272727"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btn_visibility_private"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:text="Private"
+                            android:textColor="#686868"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View
+                    android:id="@+id/divider_hit_preview"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#D4D4D4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_hit_visibility" />
+
+                <!-- Court Preview Row -->
+                <LinearLayout
+                    android:id="@+id/layout_hit_preview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_hit_preview">
+
+                    <TextView
+                        android:id="@+id/tv_preview_court_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Court Name"
+                        android:textColor="#272727"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="4dp"
+                            android:contentDescription="Played"
+                            android:src="@drawable/ic_check"
+                            app:tint="#686868" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Played"
+                            android:textColor="#686868"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
