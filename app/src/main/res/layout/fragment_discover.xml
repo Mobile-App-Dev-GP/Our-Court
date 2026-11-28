@@ -190,7 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Try another location or adjust your filters."
+            android:text="Try another location or adjust your filters.\n(Tap here to test Court Details &amp; Leave a Review)"
             android:textColor="#686868"
             android:textSize="14sp" />
     </LinearLayout>

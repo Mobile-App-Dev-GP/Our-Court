@@ -1,6 +1,5 @@
 package com.example.ourcourt
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -14,7 +13,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.ourcourt.data.model.TennisCourtPlace
 import com.google.android.material.button.MaterialButton
@@ -38,21 +36,6 @@ class CourtDetailsFragment : Fragment() {
     private lateinit var containerSignups: LinearLayout
     private lateinit var tvSignupSubtitle: TextView
     private lateinit var tvEmptySignups: TextView
-
-    private val checkInLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            // Record Court History and Hit List ONLY when a user checks in to play
-            val context = requireContext()
-            CourtHistoryManager.recordCourtView(context, placeId, courtName)
-            val now = System.currentTimeMillis()
-            val dateStr = SimpleDateFormat("MMM d, yyyy", Locale.getDefault()).format(Date(now))
-            HitListDataStore.recordVisit(placeId, courtName, shortAddress.ifEmpty { formattedAddress }, dateStr, now)
-
-            loadCommunitySignups()
-        }
-    }
 
     companion object {
         private const val ARG_PLACE_ID = "arg_place_id"
@@ -146,9 +129,27 @@ class CourtDetailsFragment : Fragment() {
             toggleSaveCourt()
         }
 
-        // Review Flow
+        // Leave a Review Flow
         btnLeaveReview.setOnClickListener {
-            Toast.makeText(requireContext(), "Review feature for $courtName coming soon!", Toast.LENGTH_SHORT).show()
+            val courtItem = CourtItem(
+                id = placeId.ifEmpty { "default_court" },
+                name = courtName,
+                rating = ratingStr.replace("★", "").trim(),
+                distance = distanceStr,
+                details = displayLoc,
+                surface = surfaceType,
+                isOpen = openStatusText.contains("Open"),
+                address = formattedAddress
+            )
+            val fragment = LeaveReviewFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("court_item", courtItem)
+                }
+            }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack("LeaveReview")
+                .commit()
         }
 
         // Website Link
@@ -166,18 +167,38 @@ class CourtDetailsFragment : Fragment() {
             layoutWebsite.visibility = View.GONE
         }
 
-        // Check In to Play Button
+        // Check In to Play Button -> Launches Kamran's CheckInFragment with dynamic API court info
         btnCheckInPlay.setOnClickListener {
-            val intent = Intent(requireContext(), CreatePostActivity::class.java).apply {
-                putExtra("EXTRA_COURT_NAME", courtName)
+            val courtItem = CourtItem(
+                id = placeId.ifEmpty { "default_court" },
+                name = courtName,
+                rating = ratingStr.replace("★", "").trim(),
+                distance = distanceStr,
+                details = displayLoc,
+                surface = surfaceType,
+                isOpen = openStatusText.contains("Open"),
+                address = formattedAddress
+            )
+            val fragment = CheckInFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("court_item", courtItem)
+                }
             }
-            checkInLauncher.launch(intent)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack("CheckIn")
+                .commit()
         }
 
         // Load Sign-Up Sheet
         loadCommunitySignups()
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadCommunitySignups()
     }
 
     private fun isCourtSaved(): Boolean {
@@ -240,19 +261,19 @@ class CourtDetailsFragment : Fragment() {
     }
 
     private fun loadCommunitySignups() {
+        if (!isAdded) return
         containerSignups.removeAllViews()
 
         val todayFormatted = SimpleDateFormat("EEE, MMM d", Locale.getDefault()).format(Date())
         
-        // Retrieve check-in posts for this specific court
-        val courtRequests = CommunityDataStore.partnerRequests.filter { req ->
-            req.court.equals(courtName, ignoreCase = true) || req.court.contains(courtName, ignoreCase = true)
-        }
+        // Retrieve check-ins from CheckInDataStore for this court
+        val checkIns = CheckInDataStore.getCheckIns(requireContext(), placeId)
+            .ifEmpty { CheckInDataStore.getCheckIns(requireContext(), courtName) }
 
-        val count = courtRequests.size
+        val count = checkIns.size
         tvSignupSubtitle.text = "Today, $todayFormatted · $count players signed up"
 
-        if (courtRequests.isEmpty()) {
+        if (checkIns.isEmpty()) {
             tvEmptySignups.visibility = View.VISIBLE
             containerSignups.visibility = View.GONE
         } else {
@@ -260,17 +281,17 @@ class CourtDetailsFragment : Fragment() {
             containerSignups.visibility = View.VISIBLE
 
             val inflater = LayoutInflater.from(requireContext())
-            for (req in courtRequests) {
+            for (req in checkIns) {
                 val row = inflater.inflate(R.layout.item_player_signup, containerSignups, false)
                 val tvAvatar = row.findViewById<TextView>(R.id.tv_player_avatar)
                 val tvName = row.findViewById<TextView>(R.id.tv_player_name)
                 val tvSkill = row.findViewById<TextView>(R.id.tv_player_skill)
                 val tvTime = row.findViewById<TextView>(R.id.tv_player_time)
 
-                tvAvatar.text = req.initials
-                tvName.text = req.authorName
-                tvSkill.text = "${req.skillBadge} · ${req.playType}"
-                tvTime.text = req.time.substringAfter(", ").ifBlank { req.time }
+                tvAvatar.text = req.avatarInitials
+                tvName.text = req.userName
+                tvSkill.text = "${req.userSkill} · ${req.playReason}"
+                tvTime.text = "${req.timeOfDay} (${req.dateSelection})"
 
                 containerSignups.addView(row)
             }
